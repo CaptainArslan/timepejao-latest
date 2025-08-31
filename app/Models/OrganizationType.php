@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class OrganizationType extends Model
 {
@@ -16,4 +17,17 @@ class OrganizationType extends Model
         'start_class',
         'end_class',
     ];
+
+    protected $casts = [
+        'start_class' => 'integer',
+        'end_class' => 'integer',
+    ];
+
+    /**
+     * Get the organizations for this type.
+     */
+    public function organizations(): HasMany
+    {
+        return $this->hasMany(Organization::class);
+    }
 }
