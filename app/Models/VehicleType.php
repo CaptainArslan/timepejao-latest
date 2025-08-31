@@ -19,9 +19,6 @@ class VehicleType extends Model
         'has_tv',
         'has_charging',
         'has_wheelchair_access',
-        'seating_capacity',
-        'standing_capacity',
-        'max_capacity',
         'is_active',
     ];
 
@@ -32,9 +29,6 @@ class VehicleType extends Model
         'has_charging' => 'boolean',
         'has_wheelchair_access' => 'boolean',
         'is_active' => 'boolean',
-        'seating_capacity' => 'integer',
-        'standing_capacity' => 'integer',
-        'max_capacity' => 'integer',
     ];
 
     // =============================== Relationships ===============================

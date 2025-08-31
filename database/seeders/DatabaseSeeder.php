@@ -20,7 +20,9 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             OrganizationTypeSeeder::class,
             OrganizationSeeder::class,
+            DriverSeeder::class,
             VehicleTypeSeeder::class,
+            VehicleSeeder::class,
         ]);
     }
 }

@@ -18,12 +18,12 @@ class VehicleTypeFactory extends Factory
     public function definition(): array
     {
         $vehicleTypes = [
-            'Bus' => ['seating' => 45, 'standing' => 15],
-            'Mini Bus' => ['seating' => 25, 'standing' => 10],
-            'Car' => ['seating' => 4, 'standing' => 0],
-            'Van' => ['seating' => 12, 'standing' => 5],
-            'SUV' => ['seating' => 7, 'standing' => 0],
-            'Luxury Car' => ['seating' => 4, 'standing' => 0],
+            'Bus' => ['seating' => 45],
+            'Mini Bus' => ['seating' => 25],
+            'Car' => ['seating' => 4],
+            'Van' => ['seating' => 12],
+            'SUV' => ['seating' => 7],
+            'Luxury Car' => ['seating' => 4],
         ];
 
         $selectedType = $this->faker->randomElement(array_keys($vehicleTypes));
@@ -41,9 +41,6 @@ class VehicleTypeFactory extends Factory
             'has_tv' => $this->faker->boolean(40), // 40% chance of having TV
             'has_charging' => $this->faker->boolean(70), // 70% chance of having charging
             'has_wheelchair_access' => $this->faker->boolean(30), // 30% chance of wheelchair access
-            'seating_capacity' => $specs['seating'],
-            'standing_capacity' => $specs['standing'],
-            'max_capacity' => $specs['seating'] + $specs['standing'],
             'is_active' => $this->faker->boolean(90), // 90% chance of being active
         ];
     }
