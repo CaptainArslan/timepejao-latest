@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Organization;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Driver>
@@ -21,6 +22,7 @@ class DriverFactory extends Factory
             'organization_id' => Organization::inRandomOrder()->first()->id,
             'full_name' => $this->faker->name(),
             'email' => $this->faker->email(),
+            'password' => Hash::make('password'),
             'phone' => $this->faker->phoneNumber(),
             'gender' => $this->faker->randomElement(['male', 'female', 'other']),
             'driver_license_number' => $this->faker->unique()->randomNumber(8),

@@ -20,6 +20,7 @@ return new class extends Migration
             // Personal Information
             $table->string('full_name')->comment('Driver full name');
             $table->string('email')->unique()->comment('Driver email address');
+            $table->string('password')->nullable()->comment('Driver password');
             $table->string('phone')->nullable()->comment('Driver phone number');
             $table->enum('gender', ['male', 'female', 'other'])->comment('Driver gender');
 
