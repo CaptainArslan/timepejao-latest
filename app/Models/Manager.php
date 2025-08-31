@@ -6,38 +6,35 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
-class Organization extends Model
+class Manager extends Model
 {
-    /** @use HasFactory<\Database\Factories\OrganizationFactory> */
+    /** @use HasFactory<\Database\Factories\ManagerFactory> */
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'alias',
-        'branch_code',
-        'code',
-        'description',
-        'tagline',
+        'organization_id',
+        'full_name',
         'email',
         'phone',
-        'website',
-        'organization_type_id',
+        'gender',
+        'image_url',
         'is_active',
-        'logo_url',
     ];
 
     protected $casts = [
         'is_active' => 'boolean',
     ];
 
-
     // =============================== Relationships ===============================
-    public function organizationType(): BelongsTo
+
+    /**
+     * Get the organization that owns the manager.
+     */
+    public function organization(): BelongsTo
     {
-        return $this->belongsTo(OrganizationType::class);
+        return $this->belongsTo(Organization::class);
     }
 
     public function addresses(): MorphMany
@@ -48,11 +45,6 @@ class Organization extends Model
     public function defaultAddress(): MorphOne
     {
         return $this->morphOne(Address::class, 'addressable')->where('is_default', true);
-    }
-
-    public function manager(): HasOne
-    {
-        return $this->hasOne(Manager::class);
     }
 
     // =============================== End of Relationships ===============================
