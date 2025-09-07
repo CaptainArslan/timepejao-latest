@@ -40,6 +40,22 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'api' => [
+            'driver' => 'passport',
+            'provider' => 'users',
+        ],
+        'managers' => [
+            'driver' => 'passport',
+            'provider' => 'managers',
+        ],
+        'drivers' => [
+            'driver' => 'passport',
+            'provider' => 'drivers',
+        ],
+        'passengers' => [
+            'driver' => 'passport',
+            'provider' => 'passengers',
+        ],
     ],
 
     /*
@@ -62,7 +78,22 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
+            'model' => App\Models\User::class,
+        ],
+
+        'passengers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Passenger::class,
+        ],
+
+        'drivers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Driver::class,
+        ],
+
+        'managers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Manager::class,
         ],
 
         // 'users' => [

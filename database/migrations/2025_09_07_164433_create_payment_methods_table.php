@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
 
             // Polymorphic relation (e.g., belongs to User, Company, etc.)
-            $table->morphs('payment_methodable');
-
+            $table->morphs('payment_methodable', indexName: 'pm_methodable_idx');
             // Core fields
             $table->string('type')->comment('e.g. card, bank_transfer, paypal, etc.');
             $table->string('provider')->comment('e.g. stripe, paypal, finix, etc.');
