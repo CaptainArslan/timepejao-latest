@@ -2,12 +2,12 @@
 
 namespace Database\Factories;
 
-use Carbon\Carbon;
 use App\Models\Driver;
-use App\Models\Vehicle;
-use App\Models\Passenger;
 use App\Models\Organization;
+use App\Models\Passenger;
 use App\Models\TransportRoute;
+use App\Models\Vehicle;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
