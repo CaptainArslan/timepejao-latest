@@ -1058,16 +1058,16 @@
         },
         {
             "name": "f9webltd/laravel-api-response-helpers",
-            "version": "2.1.0",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/f9webltd/laravel-api-response-helpers.git",
-                "reference": "82616312a01b62cf8808362c2d7c3a36b569008c"
+                "reference": "42d0df0b210b61865085e5d7a53a5d1a44fc9474"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/f9webltd/laravel-api-response-helpers/zipball/82616312a01b62cf8808362c2d7c3a36b569008c",
-                "reference": "82616312a01b62cf8808362c2d7c3a36b569008c",
+                "url": "https://api.github.com/repos/f9webltd/laravel-api-response-helpers/zipball/42d0df0b210b61865085e5d7a53a5d1a44fc9474",
+                "reference": "42d0df0b210b61865085e5d7a53a5d1a44fc9474",
                 "shasum": ""
             },
             "require": {
@@ -1105,9 +1105,9 @@
             ],
             "support": {
                 "issues": "https://github.com/f9webltd/laravel-api-response-helpers/issues",
-                "source": "https://github.com/f9webltd/laravel-api-response-helpers/tree/2.1.0"
+                "source": "https://github.com/f9webltd/laravel-api-response-helpers/tree/2.1.1"
             },
-            "time": "2025-02-15T10:57:04+00:00"
+            "time": "2025-08-31T07:47:07+00:00"
         },
         {
             "name": "filament/actions",
