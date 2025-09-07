@@ -2,16 +2,16 @@
 
 namespace Database\Seeders;
 
-use App\Models\VehicleType;
+use App\Models\TransportRoute;
 use Illuminate\Database\Seeder;
 
-class VehicleTypeSeeder extends Seeder
+class TransportRouteSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        VehicleType::factory(10)->create();
+        TransportRoute::factory()->count(100)->create();
     }
 }

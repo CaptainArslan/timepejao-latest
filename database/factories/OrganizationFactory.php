@@ -2,10 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\Organization;
 use App\Models\OrganizationType;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
-use App\Models\Organization; // Added this import for the new generateUniqueCode method
+use Illuminate\Support\Str; // Added this import for the new generateUniqueCode method
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Organization>
@@ -57,6 +57,7 @@ class OrganizationFactory extends Factory
     {
         // Generate 8 random alphanumeric characters
         $randomPart = strtoupper(Str::random(6));
-        return $initials . '-' . $randomPart;
+
+        return $initials.'-'.$randomPart;
     }
 }

@@ -28,10 +28,10 @@ class VehicleTypeFactory extends Factory
 
         $selectedType = $this->faker->randomElement(array_keys($vehicleTypes));
         $specs = $vehicleTypes[$selectedType];
-        
+
         $name = $selectedType;
         $code = $this->generateVehicleCode($name);
-        
+
         return [
             'name' => $name,
             'code' => $code,
@@ -52,6 +52,7 @@ class VehicleTypeFactory extends Factory
     {
         $initials = strtoupper(substr(preg_replace('/[^a-zA-Z0-9]/', '', $name), 0, 3));
         $randomPart = strtoupper(Str::random(4));
-        return $initials . '-' . $randomPart;
+
+        return $initials.'-'.$randomPart;
     }
 }

@@ -2,12 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Driver;
 use App\Models\Manager;
-use App\Models\Vehicle;
 use App\Models\Organization;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class OrganizationSeeder extends Seeder
 {

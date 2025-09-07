@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Driver;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DriverSeeder extends Seeder
 {

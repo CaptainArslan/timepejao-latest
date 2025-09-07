@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Organization extends Model
@@ -34,7 +34,6 @@ class Organization extends Model
         'is_active' => 'boolean',
     ];
 
-
     // =============================== Relationships ===============================
     public function organizationType(): BelongsTo
     {
@@ -51,6 +50,11 @@ class Organization extends Model
         return $this->morphOne(Address::class, 'addressable')->where('is_default', true);
     }
 
+    public function currectLocation(): MorphOne
+    {
+        return $this->morphOne(CurrectLocation::class, 'locationable');
+    }
+
     public function manager(): HasOne
     {
         return $this->hasOne(Manager::class);
@@ -64,6 +68,11 @@ class Organization extends Model
     public function vehicles(): HasMany
     {
         return $this->hasMany(Vehicle::class);
+    }
+
+    public function transportRoutes(): HasMany
+    {
+        return $this->hasMany(TransportRoute::class);
     }
 
     // =============================== End of Relationships ===============================

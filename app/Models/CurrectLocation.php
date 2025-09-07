@@ -6,29 +6,26 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
-class Address extends Model
+class CurrectLocation extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'addressable_id',
-        'addressable_type',
-        'label',
-        'name',
-        'phone',
-        'address_line1',
-        'address_line2',
-        'city',
-        'state',
-        'postal_code',
-        'country',
+        'locationable_id',
+        'locationable_type',
         'latitude',
         'longitude',
-        'is_default',
+        'address',
+        'city',
+        'state',
+        'country',
+        'postal_code',
+        'location_updated_at',
+        'metadata',
     ];
 
     // Polymorphic relation
-    public function addressable(): MorphTo
+    public function locationable(): MorphTo
     {
         return $this->morphTo();
     }

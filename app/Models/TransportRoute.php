@@ -5,51 +5,37 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
 
-class Manager extends Model
+class TransportRoute extends Model
 {
-    /** @use HasFactory<\Database\Factories\ManagerFactory> */
+    /** @use HasFactory<\Database\Factories\TransportRouteFactory> */
     use HasFactory;
 
     protected $fillable = [
         'organization_id',
-        'full_name',
-        'email',
-        'phone',
-        'gender',
-        'image_url',
+        'name',
+        'number',
+        'description',
+        'from_address',
+        'to_address',
+        'notes',
+        'image',
+        'waypoints',
         'is_active',
     ];
 
     protected $casts = [
         'is_active' => 'boolean',
+        'from_address' => 'array',
+        'to_address' => 'array',
+        'waypoints' => 'array',
     ];
 
     // =============================== Relationships ===============================
 
-    /**
-     * Get the organization that owns the manager.
-     */
     public function organization(): BelongsTo
     {
         return $this->belongsTo(Organization::class);
-    }
-
-    public function addresses(): MorphMany
-    {
-        return $this->morphMany(Address::class, 'addressable');
-    }
-
-    public function defaultAddress(): MorphOne
-    {
-        return $this->morphOne(Address::class, 'addressable')->where('is_default', true);
-    }
-
-    public function currectLocation(): MorphOne
-    {
-        return $this->morphOne(CurrectLocation::class, 'locationable');
     }
 
     // =============================== End of Relationships ===============================

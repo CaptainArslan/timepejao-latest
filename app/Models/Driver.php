@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Driver extends Model
 {
@@ -15,6 +17,7 @@ class Driver extends Model
         'organization_id',
         'full_name',
         'email',
+        'password',
         'phone',
         'gender',
         'driver_license_number',
@@ -61,6 +64,21 @@ class Driver extends Model
     public function organization(): BelongsTo
     {
         return $this->belongsTo(Organization::class);
+    }
+
+    public function addresses(): MorphMany
+    {
+        return $this->morphMany(Address::class, 'addressable');
+    }
+
+    public function defaultAddress(): MorphOne
+    {
+        return $this->morphOne(Address::class, 'addressable')->where('is_default', true);
+    }
+
+    public function currectLocation(): MorphOne
+    {
+        return $this->morphOne(CurrectLocation::class, 'locationable');
     }
 
     // =============================== End of Relationships ===============================

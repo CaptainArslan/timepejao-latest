@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\VehicleType;
 use App\Models\Organization;
+use App\Models\VehicleType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,7 +19,7 @@ class VehicleFactory extends Factory
     public function definition(): array
     {
         return [
-            'vehicle_type_id' => VehicleType::inRandomOrder()->first()->id, 
+            'vehicle_type_id' => VehicleType::inRandomOrder()->first()->id,
             'organization_id' => Organization::inRandomOrder()->first()->id,
             'registration_number' => $this->faker->unique()->randomNumber(8),
             'vin' => $this->faker->unique()->randomNumber(8),
