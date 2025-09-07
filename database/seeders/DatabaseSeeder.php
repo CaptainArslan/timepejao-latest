@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             VehicleTypeSeeder::class,
             VehicleSeeder::class,
             TransportRouteSeeder::class,
+            ScheduleSeeder::class,
         ]);
     }
 }

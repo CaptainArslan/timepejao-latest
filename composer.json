@@ -10,6 +10,7 @@
         "f9webltd/laravel-api-response-helpers": "^2.1",
         "filament/filament": "4.0",
         "laravel/framework": "^12.0",
+        "laravel/passport": "^13.2",
         "laravel/tinker": "^2.10.1"
     },
     "require-dev": {
