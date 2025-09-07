@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
+use Carbon\Carbon;
 use App\Models\Driver;
-use App\Models\Organization;
-use App\Models\Passenger;
-use App\Models\TransportRoute;
 use App\Models\Vehicle;
+use App\Models\Passenger;
+use App\Models\Organization;
+use App\Models\TransportRoute;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Carbon;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Schedule>
