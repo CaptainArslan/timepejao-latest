@@ -105,66 +105,6 @@ class Schedule extends Model
         ];
     }
 
-    public function isPublished(): bool
-    {
-        return $this->schedule_status === 'published';
-    }
-
-    public function isInProgress(): bool
-    {
-        return in_array($this->trip_status, ['boarding', 'departed', 'in_transit']);
-    }
-
-    public function isCompleted(): bool
-    {
-        return $this->trip_status === 'completed' || $this->schedule_status === 'completed';
-    }
-
-    public function isCancelled(): bool
-    {
-        return $this->trip_status === 'cancelled' || $this->schedule_status === 'cancelled';
-    }
-
-    public function getCurrentDelayMinutes(): int
-    {
-        if (! $this->is_delayed) {
-            return 0;
-        }
-
-        if ($this->delay_resolved_at) {
-            return $this->delay_minutes;
-        }
-
-        // Calculate current delay if still ongoing
-        if ($this->delay_started_at) {
-            $currentDelay = now()->diffInMinutes($this->delay_started_at);
-
-            return max($currentDelay, $this->delay_minutes);
-        }
-
-        return $this->delay_minutes;
-    }
-
-    public function isAllNotified(): bool
-    {
-        return $this->is_driver_notified && $this->is_passenger_notified;
-    }
-
-    public function isNotNotified(): bool
-    {
-        return ! $this->is_driver_notified && ! $this->is_passenger_notified;
-    }
-
-    public function isDriverOnlyNotified(): bool
-    {
-        return $this->is_driver_notified && ! $this->is_passenger_notified;
-    }
-
-    public function isPassengerOnlyNotified(): bool
-    {
-        return ! $this->is_driver_notified && $this->is_passenger_notified;
-    }
-
     // =============================== End of Accessors & Mutators ===============================
 
     // =============================== Status Management Methods ===============================
@@ -260,6 +200,69 @@ class Schedule extends Model
         return false;
     }
 
+    // =============================== End of Status Management Methods ===============================
+
+    // =============================== Status Management Methods ===============================
+
+    public function isPublished(): bool
+    {
+        return $this->schedule_status === 'published';
+    }
+
+    public function isInProgress(): bool
+    {
+        return in_array($this->trip_status, ['boarding', 'departed', 'in_transit']);
+    }
+
+    public function isCompleted(): bool
+    {
+        return $this->trip_status === 'completed' || $this->schedule_status === 'completed';
+    }
+
+    public function isCancelled(): bool
+    {
+        return $this->trip_status === 'cancelled' || $this->schedule_status === 'cancelled';
+    }
+
+    public function getCurrentDelayMinutes(): int
+    {
+        if (! $this->is_delayed) {
+            return 0;
+        }
+
+        if ($this->delay_resolved_at) {
+            return $this->delay_minutes;
+        }
+
+        // Calculate current delay if still ongoing
+        if ($this->delay_started_at) {
+            $currentDelay = now()->diffInMinutes($this->delay_started_at);
+
+            return max($currentDelay, $this->delay_minutes);
+        }
+
+        return $this->delay_minutes;
+    }
+
+    public function isAllNotified(): bool
+    {
+        return $this->is_driver_notified && $this->is_passenger_notified;
+    }
+
+    public function isNotNotified(): bool
+    {
+        return ! $this->is_driver_notified && ! $this->is_passenger_notified;
+    }
+
+    public function isDriverOnlyNotified(): bool
+    {
+        return $this->is_driver_notified && ! $this->is_passenger_notified;
+    }
+
+    public function isPassengerOnlyNotified(): bool
+    {
+        return ! $this->is_driver_notified && $this->is_passenger_notified;
+    }
     // =============================== End of Status Management Methods ===============================
 
     // =============================== Delay Management Methods ===============================

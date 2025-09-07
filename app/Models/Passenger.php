@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -9,11 +10,15 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 
 class Passenger extends Authenticatable
 {
+    use HasApiTokens;
+
     /** @use HasFactory<\Database\Factories\PassengerFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory;
+    use Notifiable;
 
     protected $fillable = [
         'organization_id',
@@ -81,38 +86,37 @@ class Passenger extends Authenticatable
         return $this->morphOne(CurrectLocation::class, 'locationable');
     }
 
+    public function deiceTokens(): MorphMany
+    {
+        return $this->morphMany(DeiceToken::class, 'tokenable');
+    }
+
     // =============================== End of Relationships ===============================
 
     // =============================== Accessors & Mutators ===============================
-
-    /**
-     * Get the passenger's age based on date of birth
-     */
-    public function getAgeAttribute(): ?int
+    protected function age(): Attribute
     {
-        return $this->date_of_birth ? $this->date_of_birth->age : null;
+        return Attribute::get(
+            fn () => $this->date_of_birth?->age
+        );
     }
 
-    /**
-     * Get the passenger's full name with title
-     */
-    public function getFullNameWithTitleAttribute(): string
+    protected function fullNameWithTitle(): Attribute
     {
-        $title = match ($this->gender) {
-            'male' => 'Mr.',
-            'female' => 'Ms.',
-            default => ''
-        };
-
-        return trim($title.' '.$this->full_name);
+        return Attribute::get(fn () => trim(
+            match ($this->gender) {
+                'male' => 'Mr.',
+                'female' => 'Ms.',
+                default => '',
+            }.' '.$this->full_name
+        ));
     }
 
-    /**
-     * Check if passenger is verified
-     */
-    public function isVerified(): bool
+    protected function isVerifiedStatus(): Attribute
     {
-        return $this->is_verified;
+        return Attribute::get(
+            fn () => (bool) $this->is_verified
+        );
     }
 
     // =============================== End of Accessors & Mutators ===============================

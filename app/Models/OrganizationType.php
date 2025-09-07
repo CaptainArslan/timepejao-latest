@@ -23,11 +23,10 @@ class OrganizationType extends Model
         'end_class' => 'integer',
     ];
 
-    /**
-     * Get the organizations for this type.
-     */
+    // =============================== Relationships ===============================
     public function organizations(): HasMany
     {
         return $this->hasMany(Organization::class);
     }
+    // =============================== End of Relationships ===============================
 }

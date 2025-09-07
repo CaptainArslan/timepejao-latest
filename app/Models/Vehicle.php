@@ -55,8 +55,6 @@ class Vehicle extends Model
     // =============================== End of Relationships ===============================
 
     // =============================== Accessors & Mutators ===============================
-
-    // ✅ Images accessor
     protected function allImages(): Attribute
     {
         return Attribute::get(function () {
@@ -79,7 +77,6 @@ class Vehicle extends Model
         });
     }
 
-    // ✅ Full name accessor
     protected function fullName(): Attribute
     {
         return Attribute::get(function () {

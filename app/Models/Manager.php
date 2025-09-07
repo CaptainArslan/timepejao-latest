@@ -7,11 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 
 class Manager extends Model
 {
+    use HasApiTokens;
+
     /** @use HasFactory<\Database\Factories\ManagerFactory> */
     use HasFactory;
+    use Notifiable;
 
     protected $fillable = [
         'organization_id',
@@ -28,10 +33,6 @@ class Manager extends Model
     ];
 
     // =============================== Relationships ===============================
-
-    /**
-     * Get the organization that owns the manager.
-     */
     public function organization(): BelongsTo
     {
         return $this->belongsTo(Organization::class);
@@ -50,6 +51,11 @@ class Manager extends Model
     public function currectLocation(): MorphOne
     {
         return $this->morphOne(CurrectLocation::class, 'locationable');
+    }
+
+    public function deiceTokens(): MorphMany
+    {
+        return $this->morphMany(DeiceToken::class, 'tokenable');
     }
 
     // =============================== End of Relationships ===============================

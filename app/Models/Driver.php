@@ -7,11 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 
 class Driver extends Model
 {
+    use HasApiTokens;
+
     /** @use HasFactory<\Database\Factories\DriverFactory> */
     use HasFactory;
+    use Notifiable;
 
     protected $fillable = [
         'organization_id',
@@ -60,7 +65,6 @@ class Driver extends Model
     ];
 
     // =============================== Relationships ===============================
-
     public function organization(): BelongsTo
     {
         return $this->belongsTo(Organization::class);
@@ -79,6 +83,11 @@ class Driver extends Model
     public function currectLocation(): MorphOne
     {
         return $this->morphOne(CurrectLocation::class, 'locationable');
+    }
+
+    public function deiceTokens(): MorphMany
+    {
+        return $this->morphMany(DeiceToken::class, 'tokenable');
     }
 
     // =============================== End of Relationships ===============================

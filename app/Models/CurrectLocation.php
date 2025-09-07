@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class CurrectLocation extends Model
 {
+    /** @use HasFactory<\Database\Factories\CurrectLocationFactory> */
     use HasFactory;
 
     protected $fillable = [
@@ -24,9 +25,10 @@ class CurrectLocation extends Model
         'metadata',
     ];
 
-    // Polymorphic relation
+    // =============================== Relationships ===============================
     public function locationable(): MorphTo
     {
         return $this->morphTo();
     }
+    // =============================== End of Relationships ===============================
 }

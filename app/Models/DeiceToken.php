@@ -6,30 +6,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
-class Address extends Model
+class DeiceToken extends Model
 {
-    /** @use HasFactory<\Database\Factories\AddressFactory> */
+    /** @use HasFactory<\Database\Factories\DeiceTokenFactory> */
     use HasFactory;
 
     protected $fillable = [
-        'addressable_id',
-        'addressable_type',
-        'label',
-        'name',
-        'phone',
-        'address_line1',
-        'address_line2',
-        'city',
-        'state',
-        'postal_code',
-        'country',
-        'latitude',
-        'longitude',
-        'is_default',
+        'tokenable_id',
+        'tokenable_type',
+        'token',
+        'device_identifier',
     ];
 
     // =============================== Relationships ===============================
-    public function addressable(): MorphTo
+    public function tokenable(): MorphTo
     {
         return $this->morphTo();
     }
